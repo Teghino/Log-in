@@ -1,11 +1,11 @@
 <?php
 
     $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $nome = "root";
+    $pw = "";
     $database = "test";
     
-    $conn = mysqli_connect($servername, $username, $password, $database);
+    $conn = mysqli_connect($servername, $nome, $pw, $database);
     
     if (!$conn) {
         die("Connessione fallita: " . mysqli_connect_error());
@@ -25,8 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "benvenuto" . "<br>";
             }
         }else {
-            session_start();
-            $_SESSION['valore'] = $_POST['username'];
             header("Location: " . 'accessofallito.php');
             exit; 
         }
@@ -38,16 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($conn->query($sql) === TRUE) {
                 echo "New record created successfully";
             } else {
-                session_start();
-                $_SESSION['valore'] = $_POST['username'];
+
                 header("Location: " . 'accessofallito.php');
                 exit; 
             }
         } catch (mysqli_sql_exception $e) {
             if ($e->getCode() == 1062) { // Errore di chiave duplicata
                 // Gestisci l'errore della chiave duplicata qui
-                session_start();
-                $_SESSION['valore'] = $_POST['username'];
                 header("Location: " . 'registrazionefallita.php');
                 exit;
             } else {
