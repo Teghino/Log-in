@@ -1,0 +1,63 @@
+body{
+    background-color: #000;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+input{
+    margin-bottom: 5px;
+}
+#contenitore{
+    width: 35%;
+    border: 5px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+.sotto{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+#invia{
+    background-color: #fff240;
+    border: 1px solid beige;
+}
+
+.scritte{
+    color: white;
+}
+
+
+header {
+    background-color: #333; 
+    padding: 10px 0; 
+}
+
+.toolbar {
+    text-align: center; 
+}
+
+.toolbar ul {
+    list-style: none; 
+    padding: 0;
+}
+
+.toolbar li {
+    display: inline; 
+    margin-right: 20px; 
+}
+
+.toolbar a {
+    text-decoration: none; 
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold; 
+}
