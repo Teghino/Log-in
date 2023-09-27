@@ -31,18 +31,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit; 
         }
         
-    }else if ($tipo == "register"){
-    
+    }else if ($tipo == "register") {
+        $sql = "INSERT INTO account (username, pass) VALUES ('$username', '$password')";
         
-            $query = "INSERT INTO account (username, pass) VALUES ($username, $password)";
-            $result = $conn->query($query);
-            if ($conn->query($query) === TRUE) {
-                echo "Account inserito con successo";
+        try {
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
             } else {
-                echo "Errore durante l'inserimento dell'account: " . $conn->error;
+                session_start();
+                $_SESSION['valore'] = $_POST['username'];
+                header("Location: " . 'accessofallito.php');
+                exit; 
             }
-
+        } catch (mysqli_sql_exception $e) {
+            if ($e->getCode() == 1062) { // Errore di chiave duplicata
+                // Gestisci l'errore della chiave duplicata qui
+                session_start();
+                $_SESSION['valore'] = $_POST['username'];
+                header("Location: " . 'registrazionefallita.php');
+                exit;
+            } else {
+                // Gestisci altri tipi di errore del database qui
+                echo "Errore del database: " . $e->getMessage();
+            }
+        }
     }
+    
 }
 
 
