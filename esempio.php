@@ -3,7 +3,7 @@
     $servername = "localhost";
     $nome = "root";
     $pw = "";
-    $database = "test";
+    $database = "tac";
     
     $conn = mysqli_connect($servername, $nome, $pw, $database);
     
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "New record created successfully";
             } else {
 
-                header("Location: " . 'accessofallito.php');
+                header("Location: " . 'registrazionefallita.php');
                 exit; 
             }
         } catch (mysqli_sql_exception $e) {
